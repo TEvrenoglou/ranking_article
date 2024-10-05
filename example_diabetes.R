@@ -46,7 +46,7 @@ source("./helpers/Bayesian_NMA_model.R")
 source("./helpers/get_results.R")
 
 
-### get the 'antidepressants' dataset from the mtrank package
+### get the 'diabetes' dataset from the mtrank package
 
 data("diabetes")
 
@@ -62,7 +62,7 @@ ranks <- tcc(data = diabetes,
              n = n,
              studlab = study,
              treat = t,
-             mcid = 1.25,
+             mcid = 1.20,
              sm = "OR",
              small.values = "desirable"
 )
