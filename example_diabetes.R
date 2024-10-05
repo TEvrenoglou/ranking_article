@@ -53,7 +53,7 @@ data("diabetes")
 
 ### RANK TREATMENTS BASED ON THE PROPOSED APPROACH ###
 
-### Define a tcc using 1.25 as the MCID
+### Define a tcc using 1.20 as the MCID
 
 # help(tcc)
 
