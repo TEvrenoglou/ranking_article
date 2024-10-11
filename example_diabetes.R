@@ -95,7 +95,7 @@ p <- pairwise(data = diabetes,
 )
 
 ## fit a NMA model
-mod_netmeta <- netmeta(p,reference.group = "Diuretic")
+mod_netmeta <- netmeta(p,reference.group = "Placebo")
 
 ## visualize NMA estimates 
 forest(mod_netmeta)
@@ -147,7 +147,7 @@ run.list = list(
   t = run.data$T,
   r = run.data$E,
   n = run.data$N,
-  ref = which(drug_names=="Diuretic"),
+  ref = which(drug_names=="Placebo"),
   outcome=0 ## small.values are desirable
 )
 
