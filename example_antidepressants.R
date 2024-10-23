@@ -99,7 +99,7 @@ p <- pairwise(data = antidepressants,
               )
 
 ## fit a NMA model
-mod_netmeta <- netmeta(p,reference.group = "vortioxetine")
+mod_netmeta <- netmeta(p,reference.group = "Vortioxetine")
 
 ## visualize NMA estimates 
 forest(mod_netmeta,
