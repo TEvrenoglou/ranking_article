@@ -142,6 +142,8 @@ res_pscores_mcid <- cbind.data.frame("treat"=names(pscores_mcid),"P_score"=unnam
 res_pscores_mcid  <- res_pscores_mcid  %>% 
   arrange(desc(P_score))
 
+res_pscores_mcid
+
 ### RANK TREATMENTS BASED ON THE BAYESIAN P(best) approach ###
 
 run.data = long2jags(
