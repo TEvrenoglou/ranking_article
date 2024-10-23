@@ -161,7 +161,7 @@ run.list = list(
   t = run.data$T,
   r = run.data$E,
   n = run.data$N,
-  ref = which(drug_names=="vortioxetine"),
+  ref = which(drug_names=="Vortioxetine"),
   outcome = 1 ## small.values are undesirable
 )
 
