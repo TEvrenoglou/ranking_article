@@ -3,9 +3,13 @@
 # library(remotes)
 # remotes::install_github("TEvrenoglou/mtrank")
 
+#remotes::install_github("guido-s/meta")
+#remotes::install_github("guido-s/netmeta")
+
 ### install R package 'nmajags' from GitHub using the following:
 #library(remotes)
 #remotes::install_github("guido-s/nmajags")
+
 
 
 library(mtrank)
@@ -78,7 +82,8 @@ mod_ability$estimates
 mod_ability$probabilities
 
 ## Vizualize the ability estimates
-forest(mod_ability)
+forest(mod_ability, spacing = 1.5,
+       file = "forest-diabetes-mtrank.pdf")
 
 ## Calculate pairwise probabilities
 #help(paired_pref) 
@@ -98,7 +103,19 @@ p <- pairwise(data = diabetes,
 mod_netmeta <- netmeta(p,reference.group = "Placebo")
 
 ## visualize NMA estimates 
-forest(mod_netmeta)
+forest(mod_netmeta,
+       overall.hetstat = TRUE, addrows = 0, calcwidth.hetstat = TRUE,
+       print.I2 = FALSE, print.tau = TRUE, print.pval.Q = FALSE,
+       digits.tau = 2,
+       #
+       drop.reference.group = TRUE,
+       #
+       label.left = "Favors vortioxetine",
+       label.right = "Favors other treatments",
+       #
+       header.line = TRUE, spacing = 1.5,
+       #
+       file = "forest-diabetes-netmeta.pdf")
 
 ## get ranking based on P-scores
 netrank(mod_netmeta,small.values = "desirable")
