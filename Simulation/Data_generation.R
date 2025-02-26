@@ -6,7 +6,11 @@ library(MASS)
 
 '%!in%' <- function(x,y)!('%in%'(x,y))
 
-source("Simulation/helpers_sim/dlong.R")
+## set a working directory
+setwd("./Simulation")
+
+## Read files
+source("helpers_sim/dlong.R")
 
 #### Settings 
 set.seed(444)
