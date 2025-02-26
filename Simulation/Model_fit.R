@@ -12,6 +12,7 @@ library(rlist)
 ## set a working directory
 setwd("./Simulation")
 
+## Read files
 source("helpers_sim/average_overlap.R")
 source("helpers_sim/nma.krahn.output.R")
 source("helpers_sim/alternative_nma.R")
