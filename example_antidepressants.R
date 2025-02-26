@@ -60,6 +60,9 @@ ranks <- tcc(data = antidepressants,
 
 
 ## Fit the model and get the ability estimates
+
+# help(mtrank)
+
 mod_ability <- mtrank(ranks)
 
 ## Extract ability estimates
@@ -73,7 +76,9 @@ forest(mod_ability, spacing = 1.5,
   file = "forest-antidepressants-mtrank.pdf")
 
 ## Calculate pairwise probabilities
+
 #help(paired_pref) 
+
 paired_pref(mod_ability,treat1 = "bupropion",treat2 = "reboxetine",type = "all")
 
 ### RANK TREATMENTS BASED ON P-scores ###
