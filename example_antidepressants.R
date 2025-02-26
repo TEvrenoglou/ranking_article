@@ -1,16 +1,4 @@
-
-### install R package 'mtrank' from GitHub using the following:
-# library(remotes)
-# remotes::install_github("TEvrenoglou/mtrank")
-
-#remotes::install_github("guido-s/meta")
-#remotes::install_github("guido-s/netmeta")
-
-### install R package 'nmajags' from GitHub using the following:
-#library(remotes)
-#remotes::install_github("guido-s/nmajags")
-
-
+### Load the necessary libraries, all of which are available in CRAN. 
 library(mtrank)
 library(netmeta)
 library(meta)
@@ -166,8 +154,6 @@ run.list = list(
   ref = which(drug_names=="Vortioxetine"),
   outcome = 1 ## small.values are undesirable
 )
-
-
 
 ## Fit the Bayesian model
 
