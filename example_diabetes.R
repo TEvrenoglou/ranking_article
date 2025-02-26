@@ -1,17 +1,4 @@
-
-### install R package 'mtrank' from GitHub using the following:
-# library(remotes)
-# remotes::install_github("TEvrenoglou/mtrank")
-
-#remotes::install_github("guido-s/meta")
-#remotes::install_github("guido-s/netmeta")
-
-### install R package 'nmajags' from GitHub using the following:
-#library(remotes)
-#remotes::install_github("guido-s/nmajags")
-
-
-
+### Load the necessary libraries, all of which are available in CRAN. 
 library(mtrank)
 library(netmeta)
 library(meta)
@@ -73,6 +60,9 @@ ranks <- tcc(data = diabetes,
 
 
 ## Fit the model and get the ability estimates
+
+# help(mtrank)
+
 mod_ability <- mtrank(ranks)
 
 ## Extract ability estimates
@@ -86,7 +76,9 @@ forest(mod_ability, spacing = 1.5,
        file = "forest-diabetes-mtrank.pdf")
 
 ## Calculate pairwise probabilities
+
 #help(paired_pref) 
+
 paired_pref(mod_ability,treat1 = "ARB",treat2 = "Diuretic",type = "all")
 
 ### RANK TREATMENTS BASED ON P-scores ###
