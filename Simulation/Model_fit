@@ -1,3 +1,4 @@
+### Load the necessary libraries, all of which are available in CRAN. 
 library(tidyverse)
 library(netmeta)
 library(metafor)
@@ -47,13 +48,13 @@ models=function(X)
   spearman_PL_true <- c()
   overlap_PL_true <- c()
   
-  ## netmeta random vs true
+  ## P-scores (random) vs true
   
   kendall_prandom_true <- c()
   spearman_prandom_true <- c()
   overlap_prandom_true <- c()
   
-  ## netmeta common vs true
+  ## P-scores (common) vs true
   
   kendall_pcommon_true <- c()
   spearman_pcommon_true <- c()
@@ -93,24 +94,28 @@ models=function(X)
   #### netmeta 
   
   mod_netmeta <- netmeta(p,reference.group = 1,small.values = "desirable")
-  
+
+  ### P-scores from random effects model 
   A <- netrank(mod_netmeta,random = T,common = F)
-  
+
   p_random <- as.data.frame(A$ranking.random)
-  
+
+  names(p_random) <- "P_score"
+
+  p_random <- p_random %>% 
+    arrange(desc(P_score))
+
+  list_p_random <- as.numeric(rownames(p_random))
+
+  ### P-scores from common effect model 
   B <- netrank(mod_netmeta,random = F,fixed = T)
   
   p_common <- as.data.frame(B$ranking.fixed)
   
-  names(p_random) <- names(p_common) <- "P_score"
-  
-  p_random <- p_random %>% 
-    arrange(desc(P_score))
-  
+  names(p_common) <- "P_score"
+
   p_common <- p_common %>% 
     arrange(desc(P_score))
-  
-  list_p_random <- as.numeric(rownames(p_random))
   
   list_p_common <- as.numeric(rownames(p_common))
   
@@ -124,8 +129,7 @@ models=function(X)
     arrange(desc(Pscoreaverage))
   
   list_preta <- as.numeric(row.names(res_preta))
-  
-  
+    
   ##### pBV 
   
   rankogram <- rankogram(mod_netmeta)
@@ -141,8 +145,6 @@ models=function(X)
   list_pbv_random <- as.numeric(pbV_random$treat)
   
   
-  ######
-  
   ######## Performance measures
   
   #### similarity Ability based metrics vs true
@@ -153,7 +155,6 @@ models=function(X)
   
   overlap_PL_true <- c(overlap_PL_true,(averageoverlap(x=list_PL, y=true_rank,k=length(half_true))))
   
-  
   #### similarity P-scores random vs true 
   
   kendall_prandom_true <- c(kendall_prandom_true, (cor(list_p_random, true_rank, method = "kendall")))
@@ -162,7 +163,6 @@ models=function(X)
   
   overlap_prandom_true <- c(overlap_prandom_true,(averageoverlap(x=list_p_random, y=true_rank,k=length(half_true))))
 
-  
   #### similarity P-scores common vs true 
   
   kendall_pcommon_true <- c(kendall_pcommon_true, (cor(list_p_common, true_rank, method = "kendall")))
@@ -170,7 +170,6 @@ models=function(X)
   spearman_pcommon_true <- c(spearman_pcommon_true, (cor(list_p_common, true_rank, method = "spearman")))
   
   overlap_pcommon_true <- c(overlap_pcommon_true,(averageoverlap(x=list_p_common, y=true_rank,k=length(half_true))))
-
   
   #### similarity PRETA vs true
   
@@ -179,7 +178,6 @@ models=function(X)
   spearman_preta_true <- c(spearman_preta_true, (cor(list_preta, true_rank, method = "spearman")))
   
   overlap_preta_true <- c(overlap_preta_true,(averageoverlap(x=list_preta, y=true_rank,k=length(half_true))))
-  
   
   #### similarity pbv random vs true 
   
@@ -266,7 +264,6 @@ mean(overlap_PL_true)
 kendall_prandom_true=c()
 for (i in 1:N.sim){kendall_prandom_true=c(kendall_prandom_true, l[[i]]$kendall_prandom_true)}
 mean(kendall_prandom_true)
-
 
 spearman_prandom_true=c()
 for (i in 1:N.sim){spearman_prandom_true=c(spearman_prandom_true, l[[i]]$spearman_prandom_true)}
