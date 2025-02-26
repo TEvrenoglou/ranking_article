@@ -376,8 +376,7 @@ models_true_overlap <- cbind.data.frame(overlap_PL_true,
                                         overlap_prandom_true,
                                         overlap_pcommon_true,
                                         overlap_preta_true,
-                                        overlap_pBV_random_true,
-                                        overlap_pBV_common_true
+                                        overlap_pBV_random_true
                                         )
 
 names(models_true_overlap) <- c("Ability based metric",
@@ -393,4 +392,4 @@ names(avg_models_true_overlap) <- c("avg_overlap")
 
 ### print results for overlap
 
-models_true_overlap
+avg_models_true_overlap
