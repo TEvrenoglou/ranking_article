@@ -43,7 +43,7 @@ models=function(X)
     half_true <- true_rank[1:((NT-1)/2)]
     }
   
-  ##### mtrank vs true
+  ##### Ability based metric vs true
   
   kendall_PL_true <- c()
   spearman_PL_true <- c()
