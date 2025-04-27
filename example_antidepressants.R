@@ -41,6 +41,36 @@ source("./helpers/get_results.R")
 
 data("antidepressants")
 
+### RANK TREATMENTS BASED ON P-scores ###
+
+p <- pairwise(data = antidepressants,
+              event =  responders,
+              studlab = studyid,
+              treat = drug_name,
+              n = ntotal,
+              sm = "OR"
+)
+
+## fit a NMA model
+mod_netmeta <- netmeta(p,reference.group = "Vortioxetine")
+
+## visualize NMA estimates 
+forest(mod_netmeta,
+       overall.hetstat = TRUE, addrows = 0, calcwidth.hetstat = TRUE,
+       print.I2 = FALSE, print.tau = TRUE, print.pval.Q = FALSE,
+       digits.tau = 2,
+       #
+       drop.reference.group = TRUE,
+       #
+       label.left = "Favors vortioxetine",
+       label.right = "Favors other treatments",
+       #
+       header.line = TRUE, spacing = 1.5,
+       #
+       file = "forest-antidepressants-netmeta.pdf")
+
+## get ranking based on P-scores
+netrank(mod_netmeta,small.values = "undesirable")
 
 ### RANK TREATMENTS BASED ON THE PROPOSED APPROACH ###
 
@@ -48,15 +78,10 @@ data("antidepressants")
 
 # help(tcc)
 
-ranks <- tcc(data = antidepressants,
-             event = responders,
-             n = ntotal,
-             studlab = studyid,
-             treat = drug_name,
+ranks <- tcc(mod_netmeta,
              mcid = 1.20,
-             sm = "OR",
              small.values = "undesirable"
-             )
+)
 
 
 ## Fit the model and get the ability estimates
@@ -73,44 +98,15 @@ mod_ability$probabilities
 
 ## Vizualize the ability estimates
 forest(mod_ability, spacing = 1.5,
-  file = "forest-antidepressants-mtrank.pdf")
+       file = "forest-antidepressants-mtrank.pdf")
 
 ## Calculate pairwise probabilities
 
 #help(paired_pref) 
 
-paired_pref(mod_ability,treat1 = "bupropion",treat2 = "reboxetine",type = "all")
+fitted(mod_ability,treat1 = "escitalopram",treat2 = "bupropion",type = "all")
 
-### RANK TREATMENTS BASED ON P-scores ###
-
-p <- pairwise(data = antidepressants,
-              event =  responders,
-              studlab = studyid,
-              treat = drug_name,
-              n = ntotal,
-              sm = "OR"
-              )
-
-## fit a NMA model
-mod_netmeta <- netmeta(p,reference.group = "Vortioxetine")
-
-## visualize NMA estimates 
-forest(mod_netmeta,
-  overall.hetstat = TRUE, addrows = 0, calcwidth.hetstat = TRUE,
-  print.I2 = FALSE, print.tau = TRUE, print.pval.Q = FALSE,
-  digits.tau = 2,
-  #
-  drop.reference.group = TRUE,
-  #
-  label.left = "Favors vortioxetine",
-  label.right = "Favors other treatments",
-  #
-  header.line = TRUE, spacing = 1.5,
-  #
-  file = "forest-antidepressants-netmeta.pdf")
-
-## get ranking based on P-scores
-netrank(mod_netmeta,small.values = "undesirable")
+fitted(mod_ability,treat1 = "escitalopram",treat2 = "reboxetine",type = "all")
 
 ### RANK TREATMENTS BASED ON THE PReTA approach ###
 
