@@ -42,45 +42,6 @@ source("./helpers/get_results.R")
 data("diabetes")
 
 
-### RANK TREATMENTS BASED ON THE PROPOSED APPROACH ###
-
-### Define a tcc using 1.20 as the MCID
-
-# help(tcc)
-
-ranks <- tcc(data = diabetes,
-             event = r,
-             n = n,
-             studlab = study,
-             treat = t,
-             mcid = 1.20,
-             sm = "OR",
-             small.values = "desirable"
-)
-
-
-## Fit the model and get the ability estimates
-
-# help(mtrank)
-
-mod_ability <- mtrank(ranks)
-
-## Extract ability estimates
-mod_ability$estimates
-
-## Extract probability that each treatment is ranked first
-mod_ability$probabilities
-
-## Vizualize the ability estimates
-forest(mod_ability, spacing = 1.5,
-       file = "forest-diabetes-mtrank.pdf")
-
-## Calculate pairwise probabilities
-
-#help(paired_pref) 
-
-paired_pref(mod_ability,treat1 = "ARB",treat2 = "Diuretic",type = "all")
-
 ### RANK TREATMENTS BASED ON P-scores ###
 
 p <- pairwise(data = diabetes,
@@ -111,6 +72,43 @@ forest(mod_netmeta,
 
 ## get ranking based on P-scores
 netrank(mod_netmeta,small.values = "desirable")
+
+
+### RANK TREATMENTS BASED ON THE PROPOSED APPROACH ###
+
+### Define a tcc using 1.20 as the MCID
+
+# help(tcc)
+
+ranks <- tcc(mod_netmeta,
+             mcid = 1.20,
+             small.values = "desirable"
+)
+
+
+## Fit the model and get the ability estimates
+
+# help(mtrank)
+
+mod_ability <- mtrank(ranks)
+
+## Extract ability estimates
+mod_ability$estimates
+
+## Extract probability that each treatment is ranked first
+mod_ability$probabilities
+
+## Vizualize the ability estimates
+forest(mod_ability, spacing = 1.5,
+       file = "forest-diabetes-mtrank.pdf")
+
+## Calculate pairwise probabilities
+
+#help(paired_pref) 
+
+fitted(mod_ability,treat1 = "ARB",treat2 = "Diuretic",type = "all")
+
+fitted(mod_ability,treat1 = "ARB",treat2 = "ACE",type = "all")
 
 ### RANK TREATMENTS BASED ON THE PReTA approach ###
 
@@ -159,8 +157,6 @@ run.list = list(
   ref = which(drug_names=="Placebo"),
   outcome=0 ## small.values are desirable
 )
-
-
 
 ## Fit the Bayesian model
 
