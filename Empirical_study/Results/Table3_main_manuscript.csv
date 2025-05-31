@@ -1,0 +1,11 @@
+"","median","25%","75%"
+"Ability_based_metric_vs_P-score",0.949,0.914,0.973
+"Ability_based_metric_vs_pBV",0.652,0.54,0.793
+"Ability_based_metric_vs_PReTA",0.926,0.868,0.963
+"Ability_based_metric_vs_P-score_(SWD)",0.931,0.882,0.974
+"P-score_vs_pBv",0.778,0.707,0.844
+"P-score_vs_PReTA",0.973,0.958,0.983
+"P-score_vs_P-score_(SWD)",0.99,0.977,0.996
+"pBV_vs_PReTA",0.694,0.597,0.818
+"pBV_vs_P-score_(SWD)",0.855,0.771,0.909
+"PReTA_vs_P-score_(SWD)",0.963,0.936,0.982
