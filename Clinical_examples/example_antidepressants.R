@@ -87,7 +87,8 @@ forest(mod_ability, spacing = 1.5,
 # create linegraph for sensitivity analysis (Supplementary Material, Figure 2)
 sensitivity <- linegraph(mod_ability,
                          swd = seq(1.10,1.50,by=0.10),
-                         swd.ref = 1.20
+                         swd.ref = 1.20,
+                         k = 6
 )
 
 sensitivity
