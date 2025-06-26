@@ -43,7 +43,7 @@ p <- pairwise(data = diabetes,
 # fit a NMA model
 mod_netmeta <- netmeta(p,reference.group = "Placebo")
 
-# visualize NMA estimates (main manuscript, Figure 4A)
+# visualize NMA estimates (main manuscript, Figure 5A)
 forest(mod_netmeta,
        overall.hetstat = TRUE, addrows = 0, calcwidth.hetstat = TRUE,
        print.I2 = FALSE, print.tau = TRUE, print.pval.Q = FALSE,
@@ -56,7 +56,7 @@ forest(mod_netmeta,
        #
        header.line = TRUE, spacing = 1.5,
        #
-       file = "forest-diabetes-netmeta.pdf")
+       file = "Main_manuscript_Figure5A.pdf")
 
 # get ranking based on P-scores visualize NMA estimates (main manuscript, Table 2)
 netrank(mod_netmeta,small.values = "desirable")
@@ -86,11 +86,11 @@ mod_ability$estimates
 # Extract probability that each treatment is ranked first
 mod_ability$probabilities
 
-# Vizualize the ability estimates (main manuscript, Figure 4B)
+# Vizualize the ability estimates (main manuscript, Figure 5B)
 forest(mod_ability, spacing = 1.5,
-       file = "forest-diabetes-mtrank.pdf")
+       file = "Main_manuscript_Figure5B.pdf")
 
-# create linegraph for sensitivity analysis (Supplementary Material, Figure 4)
+# create linegraph for sensitivity analysis (Main Manuscript, Figure 6)
 sensitivity <- linegraph(mod_ability,
           swd = seq(1.10,1.50,by=0.10),
           swd.ref = 1.20
@@ -98,10 +98,10 @@ sensitivity <- linegraph(mod_ability,
 
 sensitivity
 
-# same colors as in Supplementary Material, Figure 4
+# same colors as in Main Manuscript, Figure 6
 # install.packages("ggsci")
 # library(ggsci)
-# sensitivity+scale_color_bmj()
+# sensitivity+scale_color_bmj()+ylab("Probability (Normalized ability)")
 
 ### RANK TREATMENTS BASED ON THE PReTA approach ###
 

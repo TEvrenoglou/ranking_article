@@ -81,9 +81,9 @@ res_cors
 
 write.csv(res_cors,paste(res_save,"/Table3_main_manuscript.csv",sep = ""),row.names = TRUE)
 
-# Reproduce Figure 5 of the main manuscript
+# Reproduce Figure 7 of the main manuscript
 
-filename_var <- "./Empirical_study/Results/Figure_5A_main_manuscript.tif"
+filename_var <- "./Empirical_study/Results/Figure_7A_main_manuscript.tif"
 tiff(filename = filename_var,res = 300,width = 2500,height = 2500)
 par(mfrow = c(2, 2), oma = c(4, 5, 2, 1))  # Set outer margins: bottom, left, top, right
 plot(log(cors$avg_var),cors$cor_ability_pscore,xlab = "",ylab = "",main = "Ability based metric vs P-scores")
@@ -98,7 +98,7 @@ mtext("log(average variance)", side = 1, outer = TRUE, line = 1, cex = 1.5)
 mtext("Pearson's correlation coefficient", side = 2, outer = TRUE, line = 1, cex = 1.5)
 dev.off()
 
-filename_range <- "./Empirical_study/Results/Figure_5B_main_manuscript.tif"
+filename_range <- "./Empirical_study/Results/Figure_7B_main_manuscript.tif"
 tiff(filename = filename_range,res = 300,width = 2500,height = 2500)
 par(mfrow = c(2, 2), oma = c(4, 5, 2, 1))  # Set outer margins: bottom, left, top, right
 plot(log(log(1/cors$range)),cors$cor_ability_pscore,xlab = "",ylab = "",main = "Ability based metric vs P-scores")
@@ -200,8 +200,8 @@ star <- unlist(star)
 ## TRUE = Star network,  FALSE = Not a star network
 table(star) 
 
-## Save forest plots in pdfs (Supplementary Figures 5-25, Panel (a))
-filename <- "./Empirical_study/Results/Supplementary_Figures_5_25_panel_a.pdf"
+## Save forest plots in pdfs (Supplementary Figures 3-23, Panel (a))
+filename <- "./Empirical_study/Results/Supplementary_Figures_3_23_panel_a.pdf"
 pdf(file = filename,
     width = 7,
     height = 7)
@@ -243,8 +243,8 @@ if(i %in% c(5,6,20)){
 }
 dev.off()
 
-## Save network graphs in pdfs (Supplementary Figures 5-25, Panel (b))
-filename_net <- "./Empirical_study/Results/Supplementary_Figures_5_25_panel_b.pdf"
+## Save network graphs in pdfs (Supplementary Figures 3-23, Panel (b))
+filename_net <- "./Empirical_study/Results/Supplementary_Figures_3_23_panel_b.pdf"
 pdf(file = filename_net,
     width = 7,
     height = 7)
