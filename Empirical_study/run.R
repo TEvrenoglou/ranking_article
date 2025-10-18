@@ -37,7 +37,7 @@ write.csv(cors,paste(res_save,"/all_cors.csv",sep = ""),row.names = FALSE)
 # Calculate correlations as in Table 3 (main manuscript)
 # Summary results are presented in terms of median correlation and interquartile range
 
-# Ability based metric vs rest methods
+# log-Abilities vs rest methods
 ab_pscr <- round(quantile(cors$cor_ability_pscore,probs = c(0.25,0.5,0.75)),digits = 3)
 ab_pbv <- round(quantile(cors$cor_ability_pbv,probs = c(0.25,0.5,0.75)),digits = 3)
 ab_preta <- round(quantile(cors$cor_ability_PReTA,probs = c(0.25,0.5,0.75)),digits = 3)
@@ -86,13 +86,13 @@ write.csv(res_cors,paste(res_save,"/Table3_main_manuscript.csv",sep = ""),row.na
 filename_var <- "./Empirical_study/Results/Figure_5A_main_manuscript.tif"
 tiff(filename = filename_var,res = 300,width = 2500,height = 2500)
 par(mfrow = c(2, 2), oma = c(4, 5, 2, 1))  # Set outer margins: bottom, left, top, right
-plot(log(cors$avg_var),cors$cor_ability_pscore,xlab = "",ylab = "",main = "Ability based metric vs P-scores")
+plot(log(cors$avg_var),cors$cor_ability_pscore,xlab = "",ylab = "",main = "log-Abilities vs P-scores")
 lines(smooth.spline(log(cors$avg_var), cors$cor_ability_pscore,df=5),lwd=2,col="purple")
-plot(log(cors$avg_var),cors$cor_ability_PReTA,xlab = "",ylab = "",main = "Ability based metric vs PReTA")
+plot(log(cors$avg_var),cors$cor_ability_PReTA,xlab = "",ylab = "",main = "log-Abilities vs PReTA")
 lines(smooth.spline(log(cors$avg_var), cors$cor_ability_PReTA,df=5),lwd=2,col="purple")
-plot(log(cors$avg_var),cors$cor_ability_pbv,xlab = "",ylab = "",main = "Ability based metric vs pBV")
+plot(log(cors$avg_var),cors$cor_ability_pbv,xlab = "",ylab = "",main = "log-Abilities vs pBV")
 lines(smooth.spline(log(cors$avg_var), cors$cor_ability_pbv,df=5),lwd=2,col="purple")
-plot(log(cors$avg_var),cors$cor_ability_pswd,xlab = "",ylab = "",main = "Ability based metric vs P-scores (SWD)")
+plot(log(cors$avg_var),cors$cor_ability_pswd,xlab = "",ylab = "",main = "log-Abilities vs P-scores (SWD)")
 lines(smooth.spline(log(cors$avg_var), cors$cor_ability_pswd,df=5),lwd=2,col="purple")
 mtext("log(average variance)", side = 1, outer = TRUE, line = 1, cex = 1.5)
 mtext("Pearson's correlation coefficient", side = 2, outer = TRUE, line = 1, cex = 1.5)
@@ -101,13 +101,13 @@ dev.off()
 filename_range <- "./Empirical_study/Results/Figure_5B_main_manuscript.tif"
 tiff(filename = filename_range,res = 300,width = 2500,height = 2500)
 par(mfrow = c(2, 2), oma = c(4, 5, 2, 1))  # Set outer margins: bottom, left, top, right
-plot(log(log(1/cors$range)),cors$cor_ability_pscore,xlab = "",ylab = "",main = "Ability based metric vs P-scores")
+plot(log(log(1/cors$range)),cors$cor_ability_pscore,xlab = "",ylab = "",main = "log-Abilities vs P-scores")
 lines(smooth.spline(log(log(1/cors$range)), cors$cor_ability_pscore,df=5),lwd=2,col="purple")
-plot(log(log(1/cors$range)),cors$cor_ability_PReTA,xlab = "",ylab = "",main = "Ability based metric vs PReTA")
+plot(log(log(1/cors$range)),cors$cor_ability_PReTA,xlab = "",ylab = "",main = "log-Abilities vs PReTA")
 lines(smooth.spline(log(log(1/cors$range)), cors$cor_ability_PReTA,df=5),lwd=2,col="purple")
-plot(log(log(1/cors$range)),cors$cor_ability_pbv,xlab = "",ylab = "",main = "Ability based metric vs pBV")
+plot(log(log(1/cors$range)),cors$cor_ability_pbv,xlab = "",ylab = "",main = "log-Abilities vs pBV")
 lines(smooth.spline(log(log(1/cors$range)), cors$cor_ability_pbv,df=5),lwd=2,col="purple")
-plot(log(log(1/cors$range)),cors$cor_ability_pswd,xlab = "",ylab = "",main = "Ability based metric vs P-scores (SWD)")
+plot(log(log(1/cors$range)),cors$cor_ability_pswd,xlab = "",ylab = "",main = "log-Abilities vs P-scores (SWD)")
 lines(smooth.spline(log(log(1/cors$range)), cors$cor_ability_pswd,df=5),lwd=2,col="purple")
 mtext("log(log(1/relative range variance))", side = 1, outer = TRUE, line = 1, cex = 1.5)
 mtext("Pearson's correlation coefficient", side = 2, outer = TRUE, line = 1, cex = 1.5)
