@@ -22,17 +22,17 @@ source("./Empirical_study/helpers/all_rankings.R")
 # a function to calculate correlation coeffiecients across methods 
 source("./Empirical_study/helpers/get_correlations.R")
 
+# Results already available in the "Results" folder
+# Get results directly from the "Results" folder or re-run the analysis
+# If directly from the "Results" folder
+all_ranks <- read.csv("Empirical_study/Results/all_ranks.csv")
+cors <- read.csv("Empirical_study/Results/all_cors.csv")
+# If interested to re-run the analysis run the following commands based on the all_rankings() helper funciton
 # get all ranks (21 warnings are expected from the 21 networks where only ties were identified)
 # runs in approximately 4 minutes
-all_ranks <- all_rankings(nmadb,mod_RR,1.25)
-# get correlations across methods
-cors <- get_correlations(all_ranks)
-
-# Save the Results in the folder "Results". 
-# You may skip this as Results are already written in the folder
-res_save <- paste(getwd(),"/Empirical_study/Results",sep = "")
-write.csv(all_ranks,paste(res_save,"/all_ranks.csv",sep = ""),row.names = FALSE)
-write.csv(cors,paste(res_save,"/all_cors.csv",sep = ""),row.names = FALSE)
+# all_ranks <- all_rankings(nmadb,mod_RR,1.25)
+# # get correlations across methods
+# cors <- get_correlations(all_ranks)
 
 # Calculate correlations as in Table 3 (main manuscript)
 # Summary results are presented in terms of median correlation and interquartile range
@@ -79,6 +79,7 @@ row.names(res_cors) <- c("Ability_based_metric_vs_P-score",
                      
 res_cors
 
+res_save <- paste(getwd(),"/Empirical_study/Results",sep = "")
 write.csv(res_cors,paste(res_save,"/Table3_main_manuscript.csv",sep = ""),row.names = TRUE)
 
 # Reproduce Figure 7 of the main manuscript
