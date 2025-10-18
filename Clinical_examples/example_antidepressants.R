@@ -52,7 +52,7 @@ forest(mod_netmeta,
        #
        header.line = TRUE, spacing = 1.5,
        #
-       file = "forest-antidepressants-netmeta.pdf")
+       file = "Main_manuscript_Figure3A.pdf")
 
 # get ranking based on P-scores visualize NMA estimates (main manuscript, Table 1)
 netrank(mod_netmeta,small.values = "undesirable")
@@ -82,9 +82,9 @@ mod_ability$probabilities
 
 # Vizualize the ability estimates (main manuscript, Figure 3B)
 forest(mod_ability, spacing = 1.5,
-       file = "forest-diabetes-mtrank.pdf")
+       file = "Main_manuscript_Figure3B.pdf")
 
-# create linegraph for sensitivity analysis (Supplementary Material, Figure 2)
+# create linegraph for sensitivity analysis (Main Manuscript, Figure 4)
 sensitivity <- linegraph(mod_ability,
                          swd = seq(1.10,1.50,by=0.10),
                          swd.ref = 1.20,
@@ -93,10 +93,10 @@ sensitivity <- linegraph(mod_ability,
 
 sensitivity
 
-# same colors as in Supplementary Material, Figure 2
+# same colors as in Main Manuscript, Figure 4
 # install.packages("ggsci")
 # library(ggsci)
-# sensitivity+scale_color_bmj()
+# sensitivity+scale_color_bmj()+ylab("Probability (Normalized ability)")
 
 ### RANK TREATMENTS BASED ON THE PReTA approach ###
 
@@ -127,3 +127,4 @@ pBV <- pBV %>%
   mutate(pBV=round(pBV,digits = 2))
 # (main manuscript, Table 2)
 pBV
+
