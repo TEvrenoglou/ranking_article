@@ -96,7 +96,7 @@ sensitivity
 # same colors as in Main Manuscript, Figure 4
 # install.packages("ggsci")
 # library(ggsci)
-# sensitivity+scale_color_bmj()+ylab("Probability (Normalized ability)")
+# sensitivity+scale_color_bmj()+ylab(expression("Normalized ability (" * hat(pi)[X] * ")"))
 
 ### RANK TREATMENTS BASED ON THE PReTA approach ###
 
